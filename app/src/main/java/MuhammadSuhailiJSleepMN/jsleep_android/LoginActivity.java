@@ -15,7 +15,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         TextView register = findViewById(R.id.RegisterNow);
-        TextView mainActivity = findViewById(R.id.loginButton);
+        TextView mainActivity = findViewById(R.id.loginJSleep);
         register.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
