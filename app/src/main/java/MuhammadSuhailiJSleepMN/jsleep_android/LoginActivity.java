@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -28,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view){
                 Intent move = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(move);
+                Toast.makeText(getApplicationContext(),"Login Successful",Toast.LENGTH_SHORT).show();
             }
         });
     }
