@@ -22,7 +22,7 @@
         app:layout_constraintVertical_bias="0.021" />
 
     <EditText
-        android:id="@+id/registerEmail"
+        android:id="@+id/loginUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
@@ -39,7 +39,7 @@
         app:layout_constraintVertical_bias="0.099" />
 
     <EditText
-        android:id="@+id/registerPassword"
+        android:id="@+id/loginPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
@@ -50,7 +50,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registerEmail"
+        app:layout_constraintTop_toBottomOf="@+id/loginUsername"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
@@ -62,7 +62,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registerPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/loginPassword" />
 
     <TextView
         android:id="@+id/accountQuestion"
