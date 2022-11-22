@@ -22,9 +22,11 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+import MuhammadSuhailiJSleepMN.jsleep_android.model.Account;
 import MuhammadSuhailiJSleepMN.jsleep_android.model.Room;
 
 public class MainActivity extends AppCompatActivity {
+    public static Account loginToMain;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

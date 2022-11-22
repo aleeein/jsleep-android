@@ -29,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     BaseApiService mApiService;
     EditText username,password;
     Context mContext;
+    public static Account backToLogin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,10 +50,8 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent move = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(move);
-                Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
                 Account account = requestAccount();
+                Account loginAccount = requestLogin();
             }
         });
     }
@@ -74,5 +73,24 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
         return null;
+    }
+    protected Account requestLogin(){
+        mApiService.getLogin(username.getText().toString(), password.getText().toString()).enqueue(new Callback<Account>() {
+            @Override
+            public void onResponse(Call<Account> call, Response<Account> response) {
+                if(response.isSuccessful()){
+                    MainActivity.loginToMain = response.body();
+                    Intent move = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(move);
+                    Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<Account> call, Throwable t) {
+                Toast.makeText(mContext,"Login Failed", Toast.LENGTH_SHORT).show();
+            }
+        });
+        return null;
+
     }
 }
