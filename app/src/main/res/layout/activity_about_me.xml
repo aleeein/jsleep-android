@@ -32,10 +32,10 @@
         android:id="@+id/accountEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="104dp"
         android:text="Email"
-        app:layout_constraintEnd_toStartOf="@+id/textView6"
+        app:layout_constraintEnd_toStartOf="@+id/answerEmail"
         app:layout_constraintTop_toBottomOf="@+id/accountName" />
 
     <TextView
@@ -43,7 +43,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:layout_marginEnd="192dp"
+        android:layout_marginEnd="188dp"
         android:text="Balance"
         app:layout_constraintEnd_toStartOf="@+id/answerBalance"
         app:layout_constraintTop_toBottomOf="@+id/accountEmail" />
@@ -52,7 +52,7 @@
         android:id="@+id/amountAboutMe"
         android:layout_width="149dp"
         android:layout_height="39dp"
-        android:layout_marginEnd="28dp"
+        android:layout_marginEnd="24dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Amount"
@@ -60,7 +60,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/topUpButton"
         app:layout_constraintTop_toBottomOf="@+id/accountBalance"
-        app:layout_constraintVertical_bias="0.04" />
+        app:layout_constraintVertical_bias="0.047" />
 
     <TextView
         android:id="@+id/answerName"
@@ -74,7 +74,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/answerEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -92,7 +92,7 @@
         android:layout_marginEnd="60dp"
         android:text="0.0"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/answerEmail" />
 
     <Button
         android:id="@+id/topUpButton"
