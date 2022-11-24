@@ -68,7 +68,7 @@
         android:id="@+id/accountQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Don't have account?"
+        android:text="Don't have an account?"
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -7,35 +7,25 @@
     android:layout_height="match_parent"
     tools:context=".AboutMeActivity">
 
-    <TextView
-        android:id="@+id/accountDetails"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="220dp"
-        android:text="Account Details"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.109" />
-
-    <TextView
-        android:id="@+id/accountName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="180dp"
-        android:text="Name"
-        app:layout_constraintEnd_toStartOf="@+id/answerName"
-        app:layout_constraintTop_toBottomOf="@+id/accountDetails" />
+    <EditText
+        android:id="@+id/amountAboutMe"
+        android:layout_width="149dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Amount"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/accountBalance"
+        app:layout_constraintTop_toBottomOf="@+id/accountBalance" />
 
     <TextView
         android:id="@+id/accountEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:layout_marginEnd="104dp"
         android:text="Email"
-        app:layout_constraintEnd_toStartOf="@+id/answerEmail"
+        app:layout_constraintStart_toStartOf="@+id/accountName"
         app:layout_constraintTop_toBottomOf="@+id/accountName" />
 
     <TextView
@@ -43,45 +33,50 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:layout_marginEnd="188dp"
         android:text="Balance"
-        app:layout_constraintEnd_toStartOf="@+id/answerBalance"
+        app:layout_constraintStart_toStartOf="@+id/accountEmail"
         app:layout_constraintTop_toBottomOf="@+id/accountEmail" />
 
-    <EditText
-        android:id="@+id/amountAboutMe"
-        android:layout_width="149dp"
-        android:layout_height="39dp"
-        android:layout_marginEnd="24dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Amount"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/topUpButton"
-        app:layout_constraintTop_toBottomOf="@+id/accountBalance"
-        app:layout_constraintVertical_bias="0.047" />
+    <TextView
+        android:id="@+id/accountDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="220dp"
+        android:layout_marginEnd="48dp"
+        android:text="Account Details"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/accountName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Name"
+        app:layout_constraintStart_toStartOf="@+id/accountDetails"
+        app:layout_constraintTop_toBottomOf="@+id/accountDetails" />
 
     <TextView
         android:id="@+id/answerName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
-        android:layout_marginEnd="60dp"
+        android:layout_marginStart="116dp"
         android:text="Suhaili"
         android:textAlignment="viewEnd"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        tools:layout_editor_absoluteY="252dp" />
 
     <TextView
         android:id="@+id/answerEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:layout_marginEnd="60dp"
         android:text="Suhaili@gmail.com"
         android:textAlignment="viewEnd"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/answerName"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/answerName" />
 
     <TextView
@@ -89,19 +84,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:layout_marginEnd="60dp"
         android:text="0.0"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/answerEmail"
         app:layout_constraintTop_toBottomOf="@+id/answerEmail" />
 
     <Button
         android:id="@+id/topUpButton"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="56dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="40dp"
         android:text="TOP UP"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/answerBalance" />
+        app:layout_constraintEnd_toEndOf="@+id/answerBalance"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        tools:layout_editor_absoluteY="346dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+        app:layout_constraintGuide_percent="0.5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
