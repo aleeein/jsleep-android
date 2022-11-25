@@ -49,30 +49,34 @@ public class AboutMeActivity extends AppCompatActivity {
         ansRenterPhoneNumber = findViewById(R.id.answerPhoneNumberRenter);
         name.setText(MainActivity.loginToMain.name);
         email.setText(MainActivity.loginToMain.email);
+        ansRenterName.setText(MainActivity.loginToMain.renter.username);
+        ansRenterAddress.setText(MainActivity.loginToMain.renter.address);
+        ansRenterPhoneNumber.setText(MainActivity.loginToMain.renter.phoneNumber);
         String balanceAboutMe = String.valueOf(MainActivity.loginToMain.balance);
         balance.setText(balanceAboutMe);
         if (MainActivity.loginToMain.renter != null) {
-            ansRenterName.setText(MainActivity.loginToMain.renter.username);
-            ansRenterAddress.setText(MainActivity.loginToMain.renter.address);
-            ansRenterPhoneNumber.setText(MainActivity.loginToMain.renter.phoneNumber);
-            nameRenter.setVisibility(View.VISIBLE);
-            addressRenter.setVisibility(View.VISIBLE);
-            phoneNumberRenter.setVisibility(View.VISIBLE);
-        }
-        if (MainActivity.loginToMain.renter == null) {
-            bigRegistRent.setVisibility(View.VISIBLE);
+            setLayout(3);
+        } else {
+            setLayout(1);
         }
         bigRegistRent.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Renter renter = requestRenter();
+                setLayout(2);
             }
+        });
+        registRent.setOnClickListener(view -> {
+            requestRenter();
+            setLayout(3);
+        });
+        cancelRent.setOnClickListener(view -> {
+            setLayout(1);
         });
     }
     protected Renter requestRenter(){
         mApiService.getRegisterRenter(MainActivity.loginToMain.id, registerNameRenter.getText().toString(),
-                registerPhoneNumberRenter.getText().toString(),
-                registerAddressRenter.getText().toString()
+                registerAddressRenter.getText().toString(),
+                registerPhoneNumberRenter.getText().toString()
         ).enqueue(new Callback<Renter>() {
             @Override
             public void onResponse(Call<Renter> call, Response<Renter> response) {
@@ -80,12 +84,10 @@ public class AboutMeActivity extends AppCompatActivity {
                     MainActivity.loginToMain.renter = response.body();
                     Toast.makeText(mContext, "Rent Successful", Toast.LENGTH_SHORT).show();
                     System.out.println(response.body());
+                    //kanan
                     ansRenterName.setText(MainActivity.loginToMain.renter.username);
                     ansRenterAddress.setText(MainActivity.loginToMain.renter.address);
                     ansRenterPhoneNumber.setText(MainActivity.loginToMain.renter.phoneNumber);
-                    registerNameRenter.setVisibility(View.VISIBLE);
-                    registerPhoneNumberRenter.setVisibility(View.VISIBLE);
-                    registerAddressRenter.setVisibility(View.VISIBLE);
                 }
             }
             @Override
@@ -96,37 +98,48 @@ public class AboutMeActivity extends AppCompatActivity {
         });
         return null;
     }
-
-    public void renterClick(View view){
-        bigRegistRent.setVisibility(View.INVISIBLE);
-        registerNameRenter.setVisibility(View.VISIBLE);
-        registerAddressRenter.setVisibility(View.VISIBLE);
-        registerPhoneNumberRenter.setVisibility(View.VISIBLE);
-        registRent.setVisibility(View.VISIBLE);
-        cancelRent.setVisibility(View.VISIBLE);
+    private void setLayout(int state){
+        if(state == 1){
+            bigRegistRent.setVisibility(View.VISIBLE);
+            registerNameRenter.setVisibility(View.INVISIBLE);
+            registerAddressRenter.setVisibility(View.INVISIBLE);
+            registerPhoneNumberRenter.setVisibility(View.INVISIBLE);
+            nameRenter.setVisibility(View.INVISIBLE);
+            addressRenter.setVisibility(View.INVISIBLE);
+            phoneNumberRenter.setVisibility(View.INVISIBLE);
+            ansRenterName.setVisibility(View.INVISIBLE);
+            ansRenterAddress.setVisibility(View.INVISIBLE);
+            ansRenterPhoneNumber.setVisibility(View.INVISIBLE);
+            registRent.setVisibility(View.INVISIBLE);
+            cancelRent.setVisibility(View.INVISIBLE);
+        }
+        if(state == 2){
+            bigRegistRent.setVisibility(View.INVISIBLE);
+            registerNameRenter.setVisibility(View.VISIBLE);
+            registerAddressRenter.setVisibility(View.VISIBLE);
+            registerPhoneNumberRenter.setVisibility(View.VISIBLE);
+            nameRenter.setVisibility(View.INVISIBLE);
+            addressRenter.setVisibility(View.INVISIBLE);
+            phoneNumberRenter.setVisibility(View.INVISIBLE);
+            ansRenterName.setVisibility(View.INVISIBLE);
+            ansRenterAddress.setVisibility(View.INVISIBLE);
+            ansRenterPhoneNumber.setVisibility(View.INVISIBLE);
+            registRent.setVisibility(View.VISIBLE);
+            cancelRent.setVisibility(View.VISIBLE);
+        }
+        if(state == 3){
+            bigRegistRent.setVisibility(View.INVISIBLE);
+            registerNameRenter.setVisibility(View.INVISIBLE);
+            registerAddressRenter.setVisibility(View.INVISIBLE);
+            registerPhoneNumberRenter.setVisibility(View.INVISIBLE);
+            nameRenter.setVisibility(View.VISIBLE);
+            addressRenter.setVisibility(View.VISIBLE);
+            phoneNumberRenter.setVisibility(View.VISIBLE);
+            ansRenterName.setVisibility(View.VISIBLE);
+            ansRenterAddress.setVisibility(View.VISIBLE);
+            ansRenterPhoneNumber.setVisibility(View.VISIBLE);
+            registRent.setVisibility(View.INVISIBLE);
+            cancelRent.setVisibility(View.INVISIBLE);
+        }
     }
-    public void registerRenterClick(View view){
-        bigRegistRent.setVisibility(View.INVISIBLE);
-        registerNameRenter.setVisibility(View.INVISIBLE);
-        registerAddressRenter.setVisibility(View.INVISIBLE);
-        registerPhoneNumberRenter.setVisibility(View.INVISIBLE);
-        nameRenter.setVisibility(View.VISIBLE);
-        addressRenter.setVisibility(View.VISIBLE);
-        phoneNumberRenter.setVisibility(View.VISIBLE);
-        ansRenterName.setVisibility(View.VISIBLE);
-        ansRenterAddress.setVisibility(View.VISIBLE);
-        ansRenterPhoneNumber.setVisibility(View.VISIBLE);
-    }
-    public void cancelClick(View view){
-        bigRegistRent.setVisibility(View.VISIBLE);
-        registerNameRenter.setVisibility(View.INVISIBLE);
-        registerAddressRenter.setVisibility(View.INVISIBLE);
-        registerPhoneNumberRenter.setVisibility(View.INVISIBLE);
-        registRent.setVisibility(View.INVISIBLE);
-        cancelRent.setVisibility(View.INVISIBLE);
-    }
-
-
-
-
 }

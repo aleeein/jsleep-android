@@ -21,7 +21,7 @@ public interface BaseApiService {
 
     @POST("/account/{id}/registerRenter")
     Call<Renter> getRegisterRenter (@Path("id") int id,
-                                    @Query("name") String username,
-                                    @Query("phone number") String phoneNumber,
-                                    @Query("address") String address);
+                                    @Query("username") String username,
+                                    @Query("address") String address,
+                                    @Query("phoneNumber") String phoneNumber);
 }
