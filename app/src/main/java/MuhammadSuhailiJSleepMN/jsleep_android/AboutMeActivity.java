@@ -49,15 +49,18 @@ public class AboutMeActivity extends AppCompatActivity {
         ansRenterPhoneNumber = findViewById(R.id.answerPhoneNumberRenter);
         name.setText(MainActivity.loginToMain.name);
         email.setText(MainActivity.loginToMain.email);
-        ansRenterName.setText(MainActivity.loginToMain.renter.username);
-        ansRenterAddress.setText(MainActivity.loginToMain.renter.address);
-        ansRenterPhoneNumber.setText(MainActivity.loginToMain.renter.phoneNumber);
+//        ansRenterName.setText(MainActivity.loginToMain.renter.username);
+//        ansRenterAddress.setText(MainActivity.loginToMain.renter.address);
+//        ansRenterPhoneNumber.setText(MainActivity.loginToMain.renter.phoneNumber);
         String balanceAboutMe = String.valueOf(MainActivity.loginToMain.balance);
         balance.setText(balanceAboutMe);
-        if (MainActivity.loginToMain.renter != null) {
-            setLayout(3);
-        } else {
+        if (MainActivity.loginToMain.renter == null) {
             setLayout(1);
+        } else {
+            ansRenterName.setText(MainActivity.loginToMain.renter.username);
+            ansRenterAddress.setText(MainActivity.loginToMain.renter.address);
+            ansRenterPhoneNumber.setText(MainActivity.loginToMain.renter.phoneNumber);
+            setLayout(3);
         }
         bigRegistRent.setOnClickListener(new View.OnClickListener(){
             @Override
