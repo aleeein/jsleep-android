@@ -1,10 +1,14 @@
 package MuhammadSuhailiJSleepMN.jsleep_android.request;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import MuhammadSuhailiJSleepMN.jsleep_android.LoginActivity;
 import MuhammadSuhailiJSleepMN.jsleep_android.R;
 import MuhammadSuhailiJSleepMN.jsleep_android.model.Account;
+import MuhammadSuhailiJSleepMN.jsleep_android.model.BedType;
+import MuhammadSuhailiJSleepMN.jsleep_android.model.City;
+import MuhammadSuhailiJSleepMN.jsleep_android.model.Facility;
 import MuhammadSuhailiJSleepMN.jsleep_android.model.Renter;
 import MuhammadSuhailiJSleepMN.jsleep_android.model.Room;
 import retrofit2.Call;
@@ -31,4 +35,13 @@ public interface BaseApiService {
     @GET("/room/getAllRoom")
     Call<List<Room>> getAllRoom (@Query("page") int page,
                                  @Query("pageSize") int pageSize);
+    @POST("/room/create")
+    Call<Room> getRoom (@Query("accountId") int accountId,
+                       @Query("name") String name,
+                       @Query("size") int size,
+                       @Query("price") int price,
+                       @Query("facility") ArrayList<Facility> facility,
+                       @Query("bedType") BedType bedType,
+                       @Query("city") City city,
+                       @Query("address") String address);
 }

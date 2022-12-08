@@ -65,10 +65,8 @@ public class LoginActivity extends AppCompatActivity {
                     System.out.println(account.toString());
                 }
             }
-
             @Override
             public void onFailure(Call<Account> call, Throwable t) {
-                Toast.makeText(mContext,"no Account id=0", Toast.LENGTH_SHORT).show();
                 System.out.println("Testing");
             }
         });

@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     Context mContext;
     int currentPg = 1;
     public static Account loginToMain;
+    public static Room listRoom;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         nextPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    getAllRoom(currentPg+1);
+                getAllRoom(currentPg+1);
             }
         });
         goPage.setOnClickListener(new View.OnClickListener() {
@@ -92,6 +93,11 @@ public class MainActivity extends AppCompatActivity {
             case R.id.person_button:
                 Intent intent = new Intent(MainActivity.this, AboutMeActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.add_box_button:
+                Intent intent1 = new Intent(MainActivity.this, CreateRoomActivity.class);
+                startActivity(intent1);
+                break;
         }
         return true;
     }
@@ -122,8 +128,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Room>> call, Throwable t) {
-                Toast.makeText(mContext,"no Account id=0", Toast.LENGTH_SHORT).show();
-                System.out.println("Testing");
+                System.out.println(page);
+                System.out.println(t);
             }
         });
         return null;
