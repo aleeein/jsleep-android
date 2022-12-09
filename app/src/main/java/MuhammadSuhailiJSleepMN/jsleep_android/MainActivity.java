@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -37,12 +38,18 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
     BaseApiService mApiService;
+    Context mContext;
     EditText pageNum;
     Button prevPage, nextPage, goPage;
-    Context mContext;
-    int currentPg = 1;
+    ListView listView;
+    MenuItem addBut;
+    private int currentPg = 1;
+    private final int pSize = 20;
+    public static int roomPosition;
     public static Account loginToMain;
     public static Room listRoom;
+    public static List<Room> getRoom;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +60,20 @@ public class MainActivity extends AppCompatActivity {
         prevPage = findViewById(R.id.prevButton);
         nextPage = findViewById(R.id.nextButton);
         goPage = findViewById(R.id.goButton);
+        listView = findViewById(R.id.MainListView);
+
         getAllRoom(currentPg);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                roomPosition = i + ((currentPg - 1) * pSize);
+                System.out.println(getRoom.get(roomPosition));
+                Intent move = new Intent(MainActivity.this, DetailRoomActivity.class);
+                startActivity(move);
+            }
+        });
+
         prevPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,7 +82,6 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     getAllRoom(currentPg - 1);
                 }
-
             }
         });
         nextPage.setOnClickListener(new View.OnClickListener() {
@@ -85,6 +104,8 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_resource, menu);
+        addBut = menu.findItem(R.id.add_box_button);
+        addBut.setVisible(MainActivity.loginToMain.renter != null);
         return true;
     }
     @Override
@@ -102,16 +123,15 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
     protected Room getAllRoom(int page){
-        mApiService.getAllRoom(page-1, 4).enqueue(new Callback<List<Room>>() {
+        mApiService.getAllRoom(page-1, pSize).enqueue(new Callback<List<Room>>() {
             @Override
             public void onResponse(Call<List<Room>> call, Response<List<Room>> response) {
                 if(response.isSuccessful()){
-                    ArrayList<Room> room;
-                    room = (ArrayList<Room>)response.body();
-                    System.out.println(room.toString());
+                    getRoom = (ArrayList<Room>)response.body();
+                    System.out.println(getRoom.toString());
                     ArrayList<String> names = new ArrayList<>();
 
-                    for (Room r : room) {
+                    for (Room r : getRoom) {
                         names.add(r.name);
                     }
                     if(names.isEmpty()) {
@@ -134,4 +154,5 @@ public class MainActivity extends AppCompatActivity {
         });
         return null;
     }
+
 }

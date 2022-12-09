@@ -14,7 +14,6 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import MuhammadSuhailiJSleepMN.jsleep_android.model.Renter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -45,18 +44,18 @@ public class CreateRoomActivity extends AppCompatActivity {
         //EditText findView
         name = findViewById(R.id.nameCreateRoom);
         price = findViewById(R.id.priceCreateRoom);
-        address = findViewById(R.id.priceCreateRoom);
-        size = findViewById(R.id.priceCreateRoom);
+        address = findViewById(R.id.addressCreateRoom);
+        size = findViewById(R.id.sizeCreateRoom);
 
         //Checkbox findView
-        checkAC = findViewById(R.id.AC);
-        checkRefrigerator = findViewById(R.id.Refrigerator);
-        checkWifi = findViewById(R.id.wifi);
-        checkBathtub = findViewById(R.id.Bathtub);
-        checkBalcony = findViewById(R.id.balcony);
-        checkRestaurant = findViewById(R.id.restaurant);
-        checkSwimmingPool = findViewById(R.id.swimmingPool);
-        checkFitness = findViewById(R.id.fitnessCenter);
+        checkAC = findViewById(R.id.detailAC);
+        checkRefrigerator = findViewById(R.id.detailRefrigerator);
+        checkWifi = findViewById(R.id.detailWifi);
+        checkBathtub = findViewById(R.id.detailBathtub);
+        checkBalcony = findViewById(R.id.detailBalcony);
+        checkRestaurant = findViewById(R.id.detailRestaurant);
+        checkSwimmingPool = findViewById(R.id.detailSwimmingPool);
+        checkFitness = findViewById(R.id.detailFitnessCenter);
 
         //Button and spinner findView
         Button createRoom = findViewById(R.id.createRoomButton);
@@ -118,7 +117,7 @@ public class CreateRoomActivity extends AppCompatActivity {
         if (checkRefrigerator.isChecked())
             facility.add(Facility.Refrigerator);
         if (checkWifi.isChecked())
-            facility.add(Facility.Wifi);
+            facility.add(Facility.WiFi);
         if (checkBathtub.isChecked())
             facility.add(Facility.Bathtub);
         if (checkBalcony.isChecked())
