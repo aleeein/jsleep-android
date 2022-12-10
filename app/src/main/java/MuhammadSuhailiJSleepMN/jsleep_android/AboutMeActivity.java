@@ -32,21 +32,27 @@ public class AboutMeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_about_me);
         mApiService = UtilsApi.getApiService();
         mContext = this;
+
         name = findViewById(R.id.answerName);
         email = findViewById(R.id.answerEmail);
         balance = findViewById(R.id.answerBalance);
+
         bigRegistRent = findViewById(R.id.registerRenterButton);
+        registRent = findViewById(R.id.registerAboutMeButton);
+        cancelRent = findViewById(R.id.cancelAboutMeButton);
+
         registerNameRenter = findViewById(R.id.registRenterName);
         registerAddressRenter = findViewById(R.id.registRenterAddress);
         registerPhoneNumberRenter = findViewById(R.id.registRenterPhoneNumber);
-        registRent = findViewById(R.id.registerAboutMeButton);
-        cancelRent = findViewById(R.id.cancelAboutMeButton);
+
         nameRenter = findViewById(R.id.renterName);
         addressRenter = findViewById(R.id.renterAddress);
         phoneNumberRenter = findViewById(R.id.renterPhoneNumber);
+
         ansRenterName = findViewById(R.id.answerRenterName);
         ansRenterAddress = findViewById(R.id.answerRenterAddress);
         ansRenterPhoneNumber = findViewById(R.id.answerPhoneNumberRenter);
+
         name.setText(MainActivity.loginToMain.name);
         email.setText(MainActivity.loginToMain.email);
         String balanceAboutMe = String.valueOf(MainActivity.loginToMain.balance);
@@ -99,6 +105,7 @@ public class AboutMeActivity extends AppCompatActivity {
         return null;
     }
     private void setLayout(int state){
+        //Default Layout display
         if(state == 1){
             bigRegistRent.setVisibility(View.VISIBLE);
             registerNameRenter.setVisibility(View.INVISIBLE);
@@ -113,6 +120,7 @@ public class AboutMeActivity extends AppCompatActivity {
             registRent.setVisibility(View.INVISIBLE);
             cancelRent.setVisibility(View.INVISIBLE);
         }
+        //Layout display after register renter button is pressed
         if(state == 2){
             bigRegistRent.setVisibility(View.INVISIBLE);
             registerNameRenter.setVisibility(View.VISIBLE);
@@ -127,6 +135,7 @@ public class AboutMeActivity extends AppCompatActivity {
             registRent.setVisibility(View.VISIBLE);
             cancelRent.setVisibility(View.VISIBLE);
         }
+        //Layout display after register button is pressed
         if(state == 3){
             bigRegistRent.setVisibility(View.INVISIBLE);
             registerNameRenter.setVisibility(View.INVISIBLE);
