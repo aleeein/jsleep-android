@@ -95,7 +95,12 @@ public class DetailRoomActivity extends AppCompatActivity {
         confirmBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                create();
+                if(MainActivity.loginToMain.renter == null){
+                    Toast.makeText(mContext, "Please register your renter account", Toast.LENGTH_SHORT).show();
+                    finish();
+                } else {
+                    create();
+                }
             }
         });
 
@@ -254,6 +259,12 @@ public class DetailRoomActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * This Java code appears to be defining a method called create that makes an API call to mApiService.getPayment, using the ID of the current user,
+     * the ID of the user's renter, the ID of a room being displayed, and a date range. If the API call is successful, the method creates a new Intent
+     * to move to a PaymentActivity, displays a toast message, and updates the user's balance. If the API call is unsuccessful, the method displays
+     * a toast message indicating that the room booking has failed.
+     */
     protected Payment create(){
         System.out.println(MainActivity.loginToMain.renter.id);
         System.out.println(displayRoom.id);

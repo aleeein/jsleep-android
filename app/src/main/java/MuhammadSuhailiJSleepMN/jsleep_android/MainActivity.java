@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,6 +52,9 @@ public class MainActivity extends AppCompatActivity {
     public static Account loginToMain;
     public static Room listRoom;
     public static List<Room> getRoom;
+    public static ArrayAdapter<String> adapt;
+    public static ArrayAdapter<String> adapter;
+    static ArrayAdapter<Room> AdaptlistView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,14 +110,37 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     *The onCreateOptionsMenu() method is part of the Android framework and is called when the options menu is first created.
+     * In this specific implementation, it inflates the options menu from a resource file and sets the visibility of one of the
+     * menu items based on the value of a loginToMain.renter variable. It then returns true to indicate that the menu was successfully created.
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_resource, menu);
+        getMenuInflater().inflate(R.menu.menu_resource, menu);
         addBut = menu.findItem(R.id.add_box_button);
         addBut.setVisible(MainActivity.loginToMain.renter != null);
-        return true;
+        MenuItem menuItem = menu.findItem(R.id.search_button);
+        SearchView searchView = (SearchView) menuItem.getActionView();
+        searchView.setQueryHint("Type here to search");
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                adapter.getFilter().filter(s);
+                return false;
+            }
+        });
+        return super.onCreateOptionsMenu(menu);
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -128,6 +155,16 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
     }
+
+    /**
+     * The getAllRoom() method is an HTTP request that fetches a page of rooms from an API service.
+     * It takes a page number as input and makes an asynchronous call to the API using enqueue(),
+     * which takes a Callback object as an argument. In the onResponse() method of the Callback,
+     * the method checks if the response was successful and, if so, processes the response body to
+     * extract a list of rooms and display them in a ListView. In the onFailure() method, the method
+     * simply prints the page number and the throwable object to the console. The method returns null in both cases.
+     *
+     */
     protected Room getAllRoom(int page){
         mApiService.getAllRoom(page-1, pSize).enqueue(new Callback<List<Room>>() {
             @Override
@@ -144,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(mContext, "All available rooms are already displayed", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    ArrayAdapter<String> adapter = new ArrayAdapter<>(mContext, android.R.layout.simple_list_item_1, names);
+                    adapter = new ArrayAdapter<>(mContext, android.R.layout.simple_list_item_1, names);
                     ListView listView = (ListView) findViewById(R.id.MainListView);
                     listView.setAdapter(adapter);
                     pageNum.setText(String.valueOf(page));

@@ -55,6 +55,13 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * This Java code appears to define a method called requestAccount that makes an API call to mApiService.getAccount with a parameter of 0.
+     * If the API call is successful, the method prints the Account object to the console. If the call is unsuccessful,
+     * the method prints the string "Testing" to the console. It looks like this method is intended to retrieve an Account object from the API,
+     * but it does not return the Account object to the caller. Instead, it always returns null.
+     */
     protected Account requestAccount(){
         mApiService.getAccount(0).enqueue(new Callback<Account>() {
             @Override
@@ -72,6 +79,14 @@ public class LoginActivity extends AppCompatActivity {
         });
         return null;
     }
+
+    /**
+     * This Java code appears to define a method called requestLogin that makes an API call to mApiService.getLogin,
+     * using a username and password entered by the user. If the API call is successful, the method saves the
+     * returned Account object to a MainActivity variable, creates a new Intent to move to a MainActivity, and displays a
+     * toast message indicating that the login was successful. If the API call is unsuccessful, the method displays a toast message
+     * indicating that the login failed. Like the previous method, requestLogin always returns null to the caller.
+     */
     protected Account requestLogin(){
         mApiService.getLogin(username.getText().toString(), password.getText().toString()).enqueue(new Callback<Account>() {
             @Override

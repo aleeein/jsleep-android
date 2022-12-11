@@ -111,7 +111,9 @@ public class CreateRoomActivity extends AppCompatActivity {
         return null;
     }
 
-    //Adding checked facilities to the array list.
+    /**
+     * Adding checked facilities to the array list.
+     */
     public ArrayList<Facility> getFacilities () {
         ArrayList<Facility> facility = new ArrayList<>();
         if (checkAC.isChecked())
