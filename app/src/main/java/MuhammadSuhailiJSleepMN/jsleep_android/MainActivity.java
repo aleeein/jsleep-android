@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        getMenuInflater().inflate(R.menu.menu_resource, menu);
+        inflater.inflate(R.menu.menu_resource, menu);
         addBut = menu.findItem(R.id.add_box_button);
         addBut.setVisible(MainActivity.loginToMain.renter != null);
         MenuItem menuItem = menu.findItem(R.id.search_button);

@@ -106,6 +106,16 @@ public class PaymentActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * This method is defining an acceptPay method in Java. It appears to be making an API call to mApiService.acceptPayment with the id field of a paymentAccount object as an argument.
+     * If the API call is successful, it starts a new MainActivity. If the call is not successful, it prints the error message to the console.
+     * The acceptPay method is marked with the protected access modifier, which means it can be accessed by classes in the same package and by subclasses of the class where it is defined.
+     * The method returns null at the end, but it appears that it doesn't need to return anything because it is only starting a new activity and printing messages. It would be better to
+     * either remove the return null statement or to change the return type of the method to void to indicate that it does not return anything.
+     * It's also worth noting that this method is using an asynchronous call to the API using a Callback object. This means that the method will return immediately,
+     * and the code in the onResponse and onFailure methods of the Callback will be executed at some point in the future when the API call completes.
+     * This is important to keep in mind if this code is being used in a context where the result of the API call is needed right away.
+     */
     protected Payment acceptPay(){
         mApiService.acceptPayment(MainActivity.paymentAccount.id).enqueue(new Callback<Boolean>() {
             @Override
@@ -125,6 +135,14 @@ public class PaymentActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * This method is defining a declinePay method in Java. It appears to be making an API call to mApiService.cancelPayment with the id field of a paymentAccount object as an argument.
+     * If the API call is successful, it starts a new MainActivity. If the call is not successful, it prints the error message to the console.
+     * The declinePay method is marked with the protected access modifier, which means it can be accessed by classes in the same package and by subclasses of the class where it is defined.
+     * The method returns null at the end, but it appears that it doesn't need to return anything because it is only starting a new activity and printing messages.
+     * It would be better to either remove the return null statement or to change the return type of the method to void to indicate that it does not return anything.
+     * It's also worth noting that this method is using an asynchronous call to the API using a Callback object. This means that the method will return immediately, and the code in the onResponse and onFailure methods of the Callback will be executed at some point in the future when the API call completes. This is important to keep in mind if this code is being used in a context where the result of the API call is needed right away.
+     */
     protected Payment declinePay(){
         mApiService.cancelPayment(MainActivity.paymentAccount.id).enqueue(new Callback<Boolean>() {
             @Override
