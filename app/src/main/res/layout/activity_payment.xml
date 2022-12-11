@@ -1,9 +1,299 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:background="@drawable/backgroundandroid"
     android:layout_height="match_parent"
     tools:context=".PaymentActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+  <androidx.constraintlayout.widget.ConstraintLayout
+      android:id="@+id/PaymentRoom"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="vertical"
+      android:baselineAligned="false"
+      android:gravity="center"
+      tools:context=".DetailRoomActivity">
+
+    <TextView
+        android:id="@+id/PaymentRoomTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Payment Confirmation"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewDetailRoom"
+        android:layout_width="380dp"
+        android:layout_height="430dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/PaymentRoomTitle">
+
+      <androidx.constraintlayout.widget.ConstraintLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:baselineAligned="false"
+          android:gravity="center"
+          android:orientation="vertical">
+
+          <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelinePayment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.50121653" />
+
+          <TextView
+              android:id="@+id/namePaymentRoom"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginStart="20dp"
+              android:layout_marginTop="20dp"
+              android:text="Name"
+              android:textStyle="bold"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toTopOf="parent" />
+
+          <TextView
+              android:id="@+id/answerNamePaymentRoom"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginStart="116dp"
+              android:layout_marginTop="20dp"
+              android:text="Name"
+              app:layout_constraintStart_toStartOf="@+id/guidelinePayment"
+              app:layout_constraintTop_toTopOf="parent" />
+
+          <TextView
+              android:id="@+id/answerBedTypePaymentRoom"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="20dp"
+              android:text="Name"
+              app:layout_constraintEnd_toEndOf="@+id/answerNamePaymentRoom"
+              app:layout_constraintHorizontal_bias="1.0"
+              app:layout_constraintStart_toStartOf="@+id/guidelinePayment"
+              app:layout_constraintTop_toBottomOf="@+id/answerNamePaymentRoom" />
+
+          <TextView
+              android:id="@+id/answerSizePaymentRoom"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="20dp"
+              android:text="Name"
+              app:layout_constraintEnd_toEndOf="@+id/answerBedTypePaymentRoom"
+              app:layout_constraintHorizontal_bias="1.0"
+              app:layout_constraintStart_toStartOf="@+id/guidelinePayment"
+              app:layout_constraintTop_toBottomOf="@+id/answerBedTypePaymentRoom" />
+
+          <TextView
+              android:id="@+id/answerPricePaymentRoom"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="20dp"
+              android:text="Name"
+              app:layout_constraintEnd_toEndOf="@+id/answerSizePaymentRoom"
+              app:layout_constraintHorizontal_bias="1.0"
+              app:layout_constraintStart_toStartOf="@+id/guidelinePayment"
+              app:layout_constraintTop_toBottomOf="@+id/answerSizePaymentRoom" />
+
+          <TextView
+              android:id="@+id/answerAddressPaymentRoom"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="20dp"
+              android:text="Name"
+              app:layout_constraintEnd_toEndOf="@+id/answerSizePaymentRoom"
+              app:layout_constraintHorizontal_bias="1.0"
+              app:layout_constraintStart_toStartOf="@+id/guidelinePayment"
+              app:layout_constraintTop_toBottomOf="@+id/answerPricePaymentRoom" />
+
+          <TextView
+              android:id="@+id/bedTypePaymentRoom"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="20dp"
+              android:text="Bed Type"
+              android:textStyle="bold"
+              app:layout_constraintEnd_toStartOf="@+id/guidelinePayment"
+              app:layout_constraintHorizontal_bias="0.0"
+              app:layout_constraintStart_toStartOf="@+id/namePaymentRoom"
+              app:layout_constraintTop_toBottomOf="@+id/namePaymentRoom" />
+
+          <TextView
+              android:id="@+id/sizePaymentRoom"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="20dp"
+              android:text="Size"
+              android:textStyle="bold"
+              app:layout_constraintEnd_toStartOf="@+id/guidelinePayment"
+              app:layout_constraintHorizontal_bias="0.0"
+              app:layout_constraintStart_toStartOf="@+id/bedTypePaymentRoom"
+              app:layout_constraintTop_toBottomOf="@+id/bedTypePaymentRoom" />
+
+          <TextView
+              android:id="@+id/pricePaymentRoom"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="20dp"
+              android:text="Price"
+              android:textStyle="bold"
+              app:layout_constraintEnd_toStartOf="@+id/guidelinePayment"
+              app:layout_constraintHorizontal_bias="0.0"
+              app:layout_constraintStart_toStartOf="@+id/sizePaymentRoom"
+              app:layout_constraintTop_toBottomOf="@+id/sizePaymentRoom" />
+
+          <TextView
+              android:id="@+id/addressPaymentRoom"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="20dp"
+              android:text="Address"
+              android:textStyle="bold"
+              app:layout_constraintEnd_toStartOf="@+id/guidelinePayment"
+              app:layout_constraintHorizontal_bias="0.0"
+              app:layout_constraintStart_toStartOf="@+id/pricePaymentRoom"
+              app:layout_constraintTop_toBottomOf="@+id/pricePaymentRoom" />
+
+          <TextView
+              android:id="@+id/facilityPaymentRoom"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="20dp"
+              android:text="Facility"
+              android:textStyle="bold"
+              app:layout_constraintEnd_toStartOf="@+id/guidelinePayment"
+              app:layout_constraintHorizontal_bias="0.0"
+              app:layout_constraintStart_toStartOf="@+id/addressPaymentRoom"
+              app:layout_constraintTop_toBottomOf="@+id/addressPaymentRoom" />
+
+          <CheckBox
+              android:id="@+id/paymentAC"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="13dp"
+              android:text="AC"
+              android:enabled="false"
+              app:layout_constraintStart_toStartOf="@+id/facilityPaymentRoom"
+              app:layout_constraintTop_toBottomOf="@+id/facilityPaymentRoom" />
+
+          <CheckBox
+              android:id="@+id/paymentBathtub"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="10dp"
+              android:text="Bathtub"
+              android:enabled="false"
+              app:layout_constraintStart_toStartOf="@+id/paymentAC"
+              app:layout_constraintTop_toBottomOf="@+id/paymentAC" />
+
+          <CheckBox
+              android:id="@+id/paymentSwimmingPool"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="10dp"
+              android:text="Swimming Pool"
+              android:enabled="false"
+              app:layout_constraintStart_toStartOf="@+id/paymentBathtub"
+              app:layout_constraintTop_toBottomOf="@+id/paymentBathtub" />
+
+          <CheckBox
+              android:id="@+id/paymentFitnessCenter"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginStart="13dp"
+              android:layout_marginTop="10dp"
+              android:enabled="false"
+              android:text="Fitness Center"
+              app:layout_constraintStart_toEndOf="@+id/paymentSwimmingPool"
+              app:layout_constraintTop_toBottomOf="@+id/paymentBalcony" />
+
+          <CheckBox
+              android:id="@+id/paymentRestaurant"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginStart="13dp"
+              android:layout_marginTop="10dp"
+              android:text="Restaurant"
+              android:enabled="false"
+              app:layout_constraintStart_toEndOf="@+id/paymentBalcony"
+              app:layout_constraintTop_toBottomOf="@+id/paymentRefrigerator" />
+
+          <CheckBox
+              android:id="@+id/paymentBalcony"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginStart="13dp"
+              android:layout_marginTop="10dp"
+              android:text="Balcony"
+              android:enabled="false"
+              app:layout_constraintStart_toEndOf="@+id/paymentBathtub"
+              app:layout_constraintTop_toBottomOf="@+id/paymentRefrigerator" />
+
+          <CheckBox
+              android:id="@+id/paymentRefrigerator"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginStart="16dp"
+              android:layout_marginTop="13dp"
+              android:text="Refrigerator"
+              android:enabled="false"
+              app:layout_constraintStart_toEndOf="@+id/paymentAC"
+              app:layout_constraintTop_toBottomOf="@+id/facilityPaymentRoom" />
+
+          <CheckBox
+              android:id="@+id/paymentWifi"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginStart="16dp"
+              android:layout_marginTop="13dp"
+              android:text="Wifi"
+              android:enabled="false"
+              app:layout_constraintStart_toEndOf="@+id/paymentRefrigerator"
+              app:layout_constraintTop_toBottomOf="@+id/facilityPaymentRoom" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+      <Button
+          android:id="@+id/acceptPaymentButton"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="20dp"
+          android:layout_marginEnd="48dp"
+          android:text="ACCEPT"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/cardViewDetailRoom" />
+
+      <Button
+          android:id="@+id/declinePaymentButton"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="48dp"
+          android:layout_marginTop="20dp"
+          android:text="DECLINE"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/cardViewDetailRoom">
+
+      </Button>
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

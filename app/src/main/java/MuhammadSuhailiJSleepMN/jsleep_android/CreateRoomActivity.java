@@ -41,13 +41,11 @@ public class CreateRoomActivity extends AppCompatActivity {
         mApiService = UtilsApi.getApiService();
         mContext = this;
 
-        //EditText findView
         name = findViewById(R.id.nameCreateRoom);
         price = findViewById(R.id.priceCreateRoom);
         address = findViewById(R.id.addressCreateRoom);
         size = findViewById(R.id.sizeCreateRoom);
 
-        //Checkbox findView
         checkAC = findViewById(R.id.detailAC);
         checkRefrigerator = findViewById(R.id.detailRefrigerator);
         checkWifi = findViewById(R.id.detailWifi);
@@ -57,13 +55,11 @@ public class CreateRoomActivity extends AppCompatActivity {
         checkSwimmingPool = findViewById(R.id.detailSwimmingPool);
         checkFitness = findViewById(R.id.detailFitnessCenter);
 
-        //Button and spinner findView
         Button createRoom = findViewById(R.id.createRoomButton);
         Button cancelRoom = findViewById(R.id.cancelRoomButton);
         bedType = findViewById(R.id.spinnerBedType);
         city = findViewById(R.id.spinnerCity);
 
-        //Setting Spinner
         adapterBedType = new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item, BedType.values());
         adapterBedType.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
         bedType.setAdapter(adapterBedType);
@@ -71,7 +67,6 @@ public class CreateRoomActivity extends AppCompatActivity {
         adapterCity.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
         city.setAdapter(adapterCity);
 
-        //Setting Button
         createRoom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,7 +77,13 @@ public class CreateRoomActivity extends AppCompatActivity {
         });
 
     }
-    //Creating rooms
+
+    /**
+     * It defines a method called requestRoom, which sends a request to create a new room using the API service mApiService.
+     * The requestRoom method first gets a list of facilities that have been checked by the user using the getFacilities method.
+     * It then calls the getRoom method on the mApiService object, passing in several parameters that are entered by the user, such as the room name, size, price, bed type, and city.
+     * The getRoom method sends an API request to create a new room and returns a Call object that can be used to track the response to the request. The requestRoom method then registers a Callback object with the Call object, which will be called when the response to the API request is received. If the response is successful, a Toast message is displayed to the user indicating that the room was created successfully. If the response is not successful, a different Toast message is displayed indicating that the room creation failed.
+     */
     protected Room requestRoom(){
         ArrayList<Facility> checkedFacilites = getFacilities();
         System.out.println(checkedFacilites);
@@ -109,6 +110,7 @@ public class CreateRoomActivity extends AppCompatActivity {
         });
         return null;
     }
+
     //Adding checked facilities to the array list.
     public ArrayList<Facility> getFacilities () {
         ArrayList<Facility> facility = new ArrayList<>();

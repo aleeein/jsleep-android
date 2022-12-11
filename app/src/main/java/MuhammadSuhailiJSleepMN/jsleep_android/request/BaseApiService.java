@@ -9,6 +9,7 @@ import MuhammadSuhailiJSleepMN.jsleep_android.model.Account;
 import MuhammadSuhailiJSleepMN.jsleep_android.model.BedType;
 import MuhammadSuhailiJSleepMN.jsleep_android.model.City;
 import MuhammadSuhailiJSleepMN.jsleep_android.model.Facility;
+import MuhammadSuhailiJSleepMN.jsleep_android.model.Payment;
 import MuhammadSuhailiJSleepMN.jsleep_android.model.Renter;
 import MuhammadSuhailiJSleepMN.jsleep_android.model.Room;
 import retrofit2.Call;
@@ -50,5 +51,18 @@ public interface BaseApiService {
                        @Query("bedType") BedType bedType,
                        @Query("city") City city,
                        @Query("address") String address);
+
+    @POST("/payment/create")
+    Call<Payment> getPayment (@Query("buyerId") int buyerId,
+                              @Query("renterId") int renterId,
+                              @Query("roomId") int roomId,
+                              @Query("from") String from,
+                              @Query("to") String to);
+
+    @POST("/payment/{id}/accept")
+    Call<Boolean> acceptPayment(@Path("id") int id);
+
+    @POST("/payment/{id}/cancel")
+    Call<Boolean> cancelPayment(@Path("id") int id);
 }
 

@@ -5,32 +5,48 @@ import androidx.cardview.widget.CardView;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import MuhammadSuhailiJSleepMN.jsleep_android.model.Facility;
+import MuhammadSuhailiJSleepMN.jsleep_android.model.Payment;
 import MuhammadSuhailiJSleepMN.jsleep_android.model.Room;
+import MuhammadSuhailiJSleepMN.jsleep_android.request.BaseApiService;
+import MuhammadSuhailiJSleepMN.jsleep_android.request.UtilsApi;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class DetailRoomActivity extends AppCompatActivity {
+    BaseApiService mApiService;
+    Context mContext;
     TextView nameDetail, bedDetail, sizeDetail, priceDetail, addressDetail;
     CheckBox ac, refrigerator, wifi, bathtub, balcony, restaurant, pool, fitness;
     public static Room displayRoom;
     private DatePickerDialog datePickerDialog, datePickerDialog1;
     private Button fromDate, toDate, makeBook, cancelBook, confirmBook;
+    public static String toDateStr = "0000-00-00";
+    public static String fromDateStr = "0000-00-00";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_room);
+        mApiService = UtilsApi.getApiService();
+        mContext = this;
         initDatePicker();
         initDatePicker1();
+
         displayRoom = MainActivity.getRoom.get(MainActivity.roomPosition);
 
         CardView cardView = (CardView) findViewById(R.id.cardViewBooking);
@@ -76,6 +92,13 @@ public class DetailRoomActivity extends AppCompatActivity {
             public void onClick(View view) { bookingLayout(2);}
         });
 
+        confirmBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                create();
+            }
+        });
+
         for (int i = 0; i < displayRoom.facility.size(); i++) {
             if(displayRoom.facility.get(i).equals(Facility.AC)) {
                 ac.setChecked(true);
@@ -113,6 +136,7 @@ public class DetailRoomActivity extends AppCompatActivity {
                 month = month + 1;
                 String date = makeDateString(day, month, year);
                 fromDate.setText(date);
+                fromDateStr = year + "-" + month + "-" + day;
 
             }
         };
@@ -120,7 +144,6 @@ public class DetailRoomActivity extends AppCompatActivity {
         int year = cal.get(Calendar.YEAR);
         int month = cal.get(Calendar.MONTH);
         int day = cal.get(Calendar.DAY_OF_MONTH);
-
         int style = AlertDialog.THEME_DEVICE_DEFAULT_DARK;
         datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
     }
@@ -135,6 +158,7 @@ public class DetailRoomActivity extends AppCompatActivity {
                 month = month + 1;
                 String date = makeDateString(day, month, year);
                 toDate.setText(date);
+                toDateStr = year + "-" + month + "-" +day;
 
             }
         };
@@ -142,7 +166,6 @@ public class DetailRoomActivity extends AppCompatActivity {
         int year = cal.get(Calendar.YEAR);
         int month = cal.get(Calendar.MONTH);
         int day = cal.get(Calendar.DAY_OF_MONTH);
-
         int style = AlertDialog.THEME_DEVICE_DEFAULT_DARK;
         datePickerDialog1 = new DatePickerDialog(this, style, dateSetListener, year, month, day);
 
@@ -229,6 +252,36 @@ public class DetailRoomActivity extends AppCompatActivity {
             CardView cv1 = (CardView) findViewById(R.id.cardViewBooking);
             cv1.setVisibility(View.INVISIBLE);
         }
+    }
+
+    protected Payment create(){
+        System.out.println(MainActivity.loginToMain.renter.id);
+        System.out.println(displayRoom.id);
+        System.out.println(fromDateStr);
+        System.out.println(toDateStr);
+
+        mApiService.getPayment(MainActivity.loginToMain.id, MainActivity.loginToMain.renter.id, displayRoom.id, fromDateStr.toString(),
+                toDateStr.toString()).enqueue(new Callback<Payment>() {
+            @Override
+            public void onResponse(Call<Payment> call, Response<Payment> response) {
+                if(response.isSuccessful()){
+                    MainActivity.paymentAccount = response.body();
+                    System.out.println("Success");
+                    Intent move = new Intent(DetailRoomActivity.this, PaymentActivity.class);
+                    startActivity(move);
+                    Toast toast = Toast.makeText(getApplicationContext(), "Room Booking Successful", Toast.LENGTH_SHORT);
+                    toast.show();
+                    MainActivity.loginToMain.balance = MainActivity.loginToMain.balance - displayRoom.price.price;
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Payment> call, Throwable t) {
+                System.out.println(t.toString());
+                Toast.makeText(mContext, "Room Booking Failed", Toast.LENGTH_SHORT).show();
+            }
+        });
+        return null;
     }
 
 }

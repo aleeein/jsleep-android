@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import MuhammadSuhailiJSleepMN.jsleep_android.model.Account;
+import MuhammadSuhailiJSleepMN.jsleep_android.model.Payment;
 import MuhammadSuhailiJSleepMN.jsleep_android.model.Room;
 import MuhammadSuhailiJSleepMN.jsleep_android.request.BaseApiService;
 import MuhammadSuhailiJSleepMN.jsleep_android.request.UtilsApi;
@@ -44,8 +45,9 @@ public class MainActivity extends AppCompatActivity {
     ListView listView;
     MenuItem addBut;
     private int currentPg = 1;
-    private final int pSize = 20;
+    private final int pSize = 3;
     public static int roomPosition;
+    public static Payment paymentAccount;
     public static Account loginToMain;
     public static Room listRoom;
     public static List<Room> getRoom;
@@ -67,10 +69,14 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                roomPosition = i + ((currentPg - 1) * pSize);
-                System.out.println(getRoom.get(roomPosition));
-                Intent move = new Intent(MainActivity.this, DetailRoomActivity.class);
-                startActivity(move);
+                roomPosition = i;
+                System.out.println(currentPg);
+                System.out.println(roomPosition);
+                //System.out.println(getRoom.get(roomPosition));
+                if(getRoom != null){
+                    Intent move = new Intent(MainActivity.this, DetailRoomActivity.class);
+                    startActivity(move);
+                }
             }
         });
 
