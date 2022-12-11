@@ -32,9 +32,15 @@ public interface BaseApiService {
                                     @Query("username") String username,
                                     @Query("address") String address,
                                     @Query("phoneNumber") String phoneNumber);
+
     @GET("/room/getAllRoom")
     Call<List<Room>> getAllRoom (@Query("page") int page,
                                  @Query("pageSize") int pageSize);
+
+    @POST("/account/{id}/topUp")
+    Call<Boolean> getTopUp(@Path("id") int id,
+                        @Query("balance") double balance);
+
     @POST("/room/create")
     Call<Room> getRoom (@Query("accountId") int accountId,
                        @Query("name") String name,
@@ -45,3 +51,4 @@ public interface BaseApiService {
                        @Query("city") City city,
                        @Query("address") String address);
 }
+

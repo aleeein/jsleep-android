@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/aboutmeDetails"
+    android:background="@drawable/backgroundandroid"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AboutMeActivity">
@@ -15,6 +16,8 @@
         android:ems="10"
         android:hint="Amount"
         android:inputType="textPersonName"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@+id/accountBalance"
         app:layout_constraintTop_toBottomOf="@+id/accountBalance" />
@@ -25,6 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:text="Email"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="@+id/accountName"
         app:layout_constraintTop_toBottomOf="@+id/accountName" />
 
@@ -34,6 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:text="Balance"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="@+id/accountEmail"
         app:layout_constraintTop_toBottomOf="@+id/accountEmail" />
 
@@ -44,6 +49,7 @@
         android:layout_marginTop="56dp"
         android:layout_marginEnd="52dp"
         android:text="Account Details"
+        android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toTopOf="parent" />
@@ -54,6 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:text="Name"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="@+id/accountDetails"
         app:layout_constraintTop_toBottomOf="@+id/accountDetails" />
 
@@ -65,6 +72,7 @@
         android:layout_marginTop="88dp"
         android:text="Suhaili"
         android:textAlignment="viewEnd"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -75,6 +83,7 @@
         android:layout_marginTop="12dp"
         android:text="Suhaili@gmail.com"
         android:textAlignment="viewEnd"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/answerName"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
@@ -86,6 +95,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:text="0.0"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/answerEmail"
         app:layout_constraintTop_toBottomOf="@+id/answerEmail" />
 
@@ -126,6 +136,7 @@
         android:ems="10"
         android:hint="Name"
         android:inputType="textPersonName"
+        android:textColor="@color/white"
         android:textSize="12sp"
         android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@+id/registerRenterButton"
@@ -139,6 +150,7 @@
         android:ems="10"
         android:hint="Address"
         android:inputType="textPersonName"
+        android:textColor="@color/white"
         android:textSize="12sp"
         android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@+id/registRenterName"
@@ -152,6 +164,7 @@
         android:ems="10"
         android:hint="Phone Number"
         android:inputType="textPersonName"
+        android:textColor="@color/white"
         android:textSize="12sp"
         android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@+id/registRenterAddress"
@@ -189,6 +202,7 @@
         android:layout_height="40dp"
         android:layout_marginTop="22dp"
         android:text="Name"
+        android:textColor="@color/white"
         android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@+id/registerRenterButton"
         app:layout_constraintTop_toBottomOf="@+id/registerRenterButton" />
@@ -199,6 +213,7 @@
         android:layout_height="40dp"
         android:layout_marginTop="16dp"
         android:text="Address"
+        android:textColor="@color/white"
         android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@+id/renterName"
         app:layout_constraintTop_toBottomOf="@+id/renterName" />
@@ -209,6 +224,7 @@
         android:layout_height="40dp"
         android:layout_marginTop="16dp"
         android:text="Phone Number"
+        android:textColor="@color/white"
         android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@+id/renterAddress"
         app:layout_constraintTop_toBottomOf="@+id/renterAddress" />
@@ -220,6 +236,7 @@
         android:layout_marginStart="34dp"
         android:layout_marginTop="22dp"
         android:text="M Suhaili Ale"
+        android:textColor="@color/white"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="@+id/registerRenterButton"
         app:layout_constraintStart_toEndOf="@+id/renterName"
@@ -231,6 +248,7 @@
         android:layout_height="40dp"
         android:layout_marginTop="16dp"
         android:text="Jl. Gunung "
+        android:textColor="@color/white"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="@+id/answerRenterName"
         app:layout_constraintTop_toBottomOf="@+id/answerRenterName" />
@@ -241,6 +259,7 @@
         android:layout_height="40dp"
         android:layout_marginTop="16dp"
         android:text="082216896623"
+        android:textColor="@color/white"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="@+id/answerRenterName"
         app:layout_constraintTop_toBottomOf="@+id/answerRenterAddress" />

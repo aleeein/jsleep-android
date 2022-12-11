@@ -28,7 +28,9 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         mApiService = UtilsApi.getApiService();
         mContext = this;
+
         Button regButton = findViewById(R.id.registerButton);
+
         username = findViewById(R.id.registerName);
         email = findViewById(R.id.registerEmail);
         password = findViewById(R.id.registerPassword);

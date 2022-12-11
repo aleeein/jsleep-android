@@ -23,9 +23,14 @@ public class AboutMeActivity extends AppCompatActivity {
     BaseApiService mApiService;
     Context mContext;
     TextView name, email, balance;
-    EditText registerNameRenter, registerAddressRenter, registerPhoneNumberRenter;
+    EditText registerNameRenter, registerAddressRenter, registerPhoneNumberRenter, balanceAmount;
     TextView nameRenter, addressRenter, phoneNumberRenter, ansRenterName, ansRenterAddress, ansRenterPhoneNumber;
-    Button registRent, cancelRent, bigRegistRent;
+    Button registRent, cancelRent, bigRegistRent, topUpBtn;
+
+    /**
+     * Initializes the activity. Sets the content view, initializes the views, and sets their visibility based on the current state of the user's renter information.
+     * Also sets up event listeners for the various buttons in the layout.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,10 +41,12 @@ public class AboutMeActivity extends AppCompatActivity {
         name = findViewById(R.id.answerName);
         email = findViewById(R.id.answerEmail);
         balance = findViewById(R.id.answerBalance);
+        balanceAmount = findViewById(R.id.amountAboutMe);
 
         bigRegistRent = findViewById(R.id.registerRenterButton);
         registRent = findViewById(R.id.registerAboutMeButton);
         cancelRent = findViewById(R.id.cancelAboutMeButton);
+        topUpBtn = findViewById(R.id.topUpButton);
 
         registerNameRenter = findViewById(R.id.registRenterName);
         registerAddressRenter = findViewById(R.id.registRenterAddress);
@@ -57,6 +64,7 @@ public class AboutMeActivity extends AppCompatActivity {
         email.setText(MainActivity.loginToMain.email);
         String balanceAboutMe = String.valueOf(MainActivity.loginToMain.balance);
         balance.setText(balanceAboutMe);
+
         if (MainActivity.loginToMain.renter == null) {
             setLayout(1);
         } else {
@@ -78,7 +86,22 @@ public class AboutMeActivity extends AppCompatActivity {
         cancelRent.setOnClickListener(view -> {
             setLayout(1);
         });
+        topUpBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                topUpRequest();
+            }
+        });
+
     }
+
+    /**
+     * Makes an API call to register a new renter using information provided in the `registerNameRenter`, `registerAddressRenter`, and `registerPhoneNumberRenter` text fields.
+     * If the API call is successful, it displays a "Rent Successful" message and sets the text of the `ansRenterName`, `ansRenterAddress`, and `ansRenterPhoneNumber` fields to the corresponding values of the renter that was registered.
+     * If the API call fails, it displays a "Rent Failed" message.
+     *
+     * @return null if the API call is successful, otherwise an error message
+     */
     protected Renter requestRenter(){
         mApiService.getRegisterRenter(MainActivity.loginToMain.id, registerNameRenter.getText().toString(),
                 registerAddressRenter.getText().toString(),
@@ -104,6 +127,45 @@ public class AboutMeActivity extends AppCompatActivity {
         });
         return null;
     }
+
+    /**
+     * Makes an API call to top up the user's balance by the amount specified in the `balanceAmount` text field.
+     * If the API call is successful, it displays a "Top Up Success" message and updates the `balance` field with the new balance amount.
+     * If the API call fails, it displays a "Top Up Failed" message.
+     *
+     * @return false if the API call is successful, otherwise an error message
+     */
+    protected Boolean topUpRequest(){
+        Double topUpAmount = Double.parseDouble(balanceAmount.getText().toString());
+        mApiService.getTopUp(MainActivity.loginToMain.id, Double.parseDouble(balanceAmount.getText().toString())).enqueue(new Callback<Boolean>() {
+            @Override
+            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                if (response.isSuccessful()){
+                    Toast.makeText(mContext, "Top Up Success", Toast.LENGTH_SHORT).show();
+                    MainActivity.loginToMain.balance += topUpAmount;
+                    String balanceAboutMe = "Rp " + MainActivity.loginToMain.balance;
+                    balance.setText(balanceAboutMe);
+                } else {
+                    Toast.makeText(mContext, "Top Up Failed", Toast.LENGTH_SHORT).show();
+                    System.out.println(topUpAmount);
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<Boolean> call, Throwable t) {
+                Toast.makeText(mContext, "Top Up Error", Toast.LENGTH_SHORT).show();
+                System.out.println(t);
+
+            }
+        });
+        return false;
+    }
+
+    /**
+     * Sets the visibility of the various views in the layout based on the specified state.
+     * @param state the layout state to use (1 = default layout, 2 = register renter layout, 3 = registered renter layout)
+     */
     private void setLayout(int state){
         //Default Layout display
         if(state == 1){
